@@ -1,0 +1,25 @@
+<table class="table table-stripped">
+    <thead>
+        <tr>
+            <th>ProductId</th>
+            <th>Category</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Photo</th>
+            <th>Seller Name</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of view_product_list">
+            <td>{{data.ProductId}}</td>
+            <td>{{data.PCategory}}</td>
+            <td>{{data.PName}}</td>
+            <td>{{data.PPrice}}</td>
+            <td>{{data.PPhoto}}</td>
+            <td>{{data.sellername}}</td>
+       
+        </tr>
+    </tbody>
+</table>

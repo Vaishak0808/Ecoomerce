@@ -1,0 +1,29 @@
+<table class="table table-stripped">
+    <thead>
+        <tr>
+            <th>CompanyId</th>
+            <th>CompanyName</th>
+            <th>Address</th>
+            <th>Phonenumber</th>
+            <th>Pincode</th>
+            <th>Proof</th>
+            <th>Website</th>
+            <th>Email</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of SellerdataList">
+            <td>{{data.CompanyId}}</td>
+            <td>{{data.CompanyName}}</td>
+            <td>{{data.CompanyAddress}}</td>
+            <td>{{data.CompanyPhonenumber}}</td>
+            <td>{{data.CompanyPin}}</td>
+            <td><img class="Sellerimage"src="{{APIUrl+data.Proof}}"></td>
+            <td>{{data.CompanyWebsite}}</td>
+            <td>{{data.CompanyEmail}}</td>
+            <td><button class="btn btn-danger">Reject</button></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>

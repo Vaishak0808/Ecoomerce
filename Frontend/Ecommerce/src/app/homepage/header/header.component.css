@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+.navbar{
+    width: 100vw;
+    height: 100vh;
+    height:50%;
+    /* background-color: #3CB371; */
+    background-color: white;
+    display: flex;
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 5px 18px black;
+    
+}
+.nav-logo{
+    flex-grow: 1;
+    margin-left: 5%;
+    font-weight: 700;
+    align-self: center;
+    font-family: 'Lobster', cursive;
+}
+
+.header_logo{
+    width: 50px;
+}
+.logo_class{
+    margin-left: 8%;
+    display: flex;
+}
+.nav-options{
+    flex-grow: 2;
+    margin-left: 10%;
+}
+.nav-icons{
+    display: flex;
+    margin-right: 10%;
+    justify-content: flex-end; 
+    flex-grow: 3;
+}
+.search-form{
+    display: flex;
+    flex-grow: 5;
+}
+.search_input,.searchbtn{ 
+        height:30px ;
+}
+.search_icon{
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-brand ,.nav-link,.searchbtn{
+/* color: white; */
+color: black;
+}
+.modal.show{
+    display: block;
+}
+.modal.accountModal{
+    display: block;
+}
+.modal.showsellerlogin{
+    display: block;
+}
+.modal.sellerregistraion{
+    display: block;
+}
+.modal{
+    margin: 0 auto; 
+    /* background-image: linear-gradient(#003537,#00324e); */
+   background-image:linear-gradient( #0bab64,#3bb78f) ;
+   
+}
+.modal-content{
+    
+    /* background-image: linear-gradient(#09203f,#98a0a5); */
+}
+.close_button{
+    background-color: white;
+    border: none;
+}
+.loginform{
+ 
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10%;
+}
+.loginbtn,.logincancelbtn{
+    margin-top: 5%;
+    border: none;
+    border-radius: 2px;
+    background-color: #3CB371;
+    color:white;
+    width:45%;
+    height: 30px;
+
+
+}
+.btn-container{
+    display:flex;
+    justify-content: space-evenly;
+}
+.loginput{
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+}
+.login-createaccount{
+    margin-top: 30px;
+    display: flex; 
+    justify-content: space-evenly
+}
+.dropdown-menu.showdrop{
+    display: block;
+}

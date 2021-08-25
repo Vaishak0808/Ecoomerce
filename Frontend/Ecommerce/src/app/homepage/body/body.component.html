@@ -1,0 +1,21 @@
+<ngb-carousel #carousel [interval]="2000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
+    <ng-template ngbSlide *ngFor="let img of images; index as i">
+        <div class="picsum-img-wrapper">
+          <img class="carousalImg" [src]="img" >
+        </div>
+    </ng-template>
+  </ngb-carousel>
+
+
+  <!-- PRODUCT CARDS -->
+<!-- <div class="productcard-divz">
+  <div *ngFor="let cards of listofcards"> 
+        <app-productcards></app-productcards> 
+    </div>
+</div> -->
+
+
+
+  
+<app-productcards></app-productcards> 
+ 

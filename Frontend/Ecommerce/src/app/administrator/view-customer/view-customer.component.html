@@ -1,0 +1,28 @@
+<table class="table table-stripped">
+    <thead>
+        <tr>
+            <th>CustomerId</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Pincode</th>
+            <th>Created</th>
+            <th>Updated</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of CustomerList">
+            <td>{{data.id}}</td>
+            <td>{{data.first_name}}</td>
+            <td>{{data.last_name}}</td>
+            <td>{{data.Address}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.PhoneNumber}}</td>
+            <td>{{data.PinCode}}</td>
+            <td>{{data.date_joined}}</td>
+            <td>{{data.Updated_on}}</td>
+        </tr>
+    </tbody>
+</table>
