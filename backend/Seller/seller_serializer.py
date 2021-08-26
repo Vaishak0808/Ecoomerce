@@ -4,13 +4,12 @@ from rest_framework import serializers
 from Seller.models import *
 from Customer.customer_serializer import *
 
-class SellerProductDetailsSerializer(serializers.ModelSerializer):
+class SellerProductDetailsSerializer(serializers.ModelSerializer): 
     class Meta:
         model = SellerProductDetails
         fields = "__all__"
 class SellerRegistrationSerializer(serializers.ModelSerializer): 
-    # userid = CustomerRegistrationSerializer(read_only = True , many=True)
-    seller = SellerProductDetailsSerializer(read_only=True,many=True)
+    sellerid = SellerProductDetailsSerializer (read_only = True , many=True)
     class Meta:
         model = SellerRegistration 
         fields ="__all__"
@@ -23,7 +22,6 @@ class CustomerUpdationSerializser(serializers.ModelSerializer):
     class Meta:
         model =  RegistrationDataTable
         fields = ("UserType",)
-
 class ProductOrderDetailsDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductOrderDetails

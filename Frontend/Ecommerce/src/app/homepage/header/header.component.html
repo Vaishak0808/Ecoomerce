@@ -51,10 +51,9 @@
       </div>
     </ng-template>
     <ng-template [ngIf]="isLoggedIn && UserType == 'Seller'" [ngIfElse]="NO">
-      <a class="nav-link" href="#">Sell Product</a>
+      <a class="nav-link"   (click)="AddProductModal=true" data-toggle="modal" data-target="#AddProductModal"  (click)="calling()">Sell Product</a>
       <a class="nav-link" href="#" >Order Details</a>
-      <a class="nav-link" (click)="logout()">LogOut</a>
-      <!-- <a class="nav-link" href="#" >Sell Product</a> -->
+      <a class="nav-link" (click)="logout()">LogOut</a> 
     </ng-template>
     <ng-template #NO>
       <div>
@@ -230,3 +229,54 @@
     </div>
   </div>
 </div>
+
+<!-- ADD PRODUCT MODAL-->
+
+<div class="modal" id="AddProductModal" [ngClass]="{'AddProductModal':AddProductModal}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Product Details</h4>
+        <button type="button" class="close close_button" data-dismiss="modal" (click)="AddProductModal=false">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form [formGroup]="productform" (ngSubmit)="AddProduct()" method="POST" class="addproduct">
+
+
+          <!-- <div class="container"> -->
+         <label for="PCategory">Category</label>
+          <input class="registerinput" type="text" class="form-control" placeholder="Category" name="PCategory"
+            formControlName="PCategory" required>
+
+          <label for="PName">Name</label>
+          <input class="registerinput" type="textarea" class="form-control" placeholder="Name" name="PName"
+            formControlName="PName" required>
+
+          <label for="PDescription">Description</label>
+          <input class="registerinput" type="textarea" class="form-control" placeholder="Description" name="PDescription"
+            formControlName="PDescription" required>
+
+          <label for="PPhoto">Image</label>
+          <input (change)="onChangeProduct($event)" class="registerinput" type="file" class="form-control"
+            placeholder="PPhoto" name="PPhoto" required>
+
+          <label for="PPrice">Price</label>
+          <input class="registerinput" type="text" class="form-control" placeholder="Price" name="PPrice"
+            formControlName="PPrice" required>
+
+          <label for="sellername">Seller Name</label>
+          <input class="registerinput" type="text" class="form-control" placeholder="sellername" name="sellername"
+            formControlName="sellername" required>
+         
+          <div class="btn-container">
+            <button type="submit" class="loginbtn">Add product</button>
+            <button type="button" class="logincancelbtn"  (click)="AddProductModal=false">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

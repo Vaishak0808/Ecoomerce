@@ -18,8 +18,10 @@ export class HeaderComponent implements OnInit {
   showdrop = false;
   showsellerloginModal = false;
   sellerregistraioModal = false;
+  AddProductModal = false;
   hai:any;
   form: FormGroup | any;
+  productform :FormGroup | any;
   response : any;
   FirstName :string | undefined;
   LastName :string | undefined;
@@ -43,6 +45,8 @@ export class HeaderComponent implements OnInit {
   checktype : any | undefined
   USERTYPE : any |undefined
   i : any |undefined
+  SellProductActive: any|undefined;
+  CompanyId :any |undefined;
   constructor(private formBuilder: FormBuilder,private service:EserviceService,private router:Router ,private route: ActivatedRoute) {
     this.token =localStorage.getItem("VC_CART_TOKEN")
     // console.log("id",JSON.parse(JSON.stringify(this.token)))
@@ -56,6 +60,16 @@ export class HeaderComponent implements OnInit {
   
 
   ngOnInit(): void { 
+        this.productform = this.formBuilder.group({
+          PCategory:[''],
+          PName:[''],
+          PDescription:[''],
+          PPhoto:[''],
+          PPrice:[''],
+          sellername:[''],
+          
+        });
+
         this.form = this.formBuilder.group({ 
           
           CompanyName:[''],
@@ -74,7 +88,11 @@ export class HeaderComponent implements OnInit {
         // console.log("USERTYPE FROM URL",this.UserType)
     }
    
-
+    SellProduct(){
+      // console.log(this.SellProductActive)  
+          localStorage.setItem('SellProductActive','show'); 
+      console.log(this.SellProductActive) 
+    }
     onChange(event:any){
       if(event.target.files.length >0){
         const file = event.target.files[0];
@@ -88,7 +106,8 @@ export class HeaderComponent implements OnInit {
         this.hai = res 
         this.userForeign =this.hai.userid
         this.UserType = this.hai.UserType
-        console.log('user-------------------------',this.userForeign,this.UserType) 
+        this.CompanyId = this.hai.CompanyId
+        console.log('user-------------------------',this.userForeign,this.UserType,this.CompanyId) 
       })
     }
     onSubmit(){
@@ -161,5 +180,34 @@ export class HeaderComponent implements OnInit {
       window.location.reload();
     }
 
+    // ADD Product
+    
+    onChangeProduct(event:any){
+      if(event.target.files.length >0){
+        const file = event.target.files[0];
+        this.productform.get('PPhoto').setValue(file);
+    }
+  }
+    AddProduct()
+    {
+      const productdata = new FormData(); 
+        
+        productdata.append('PCategory',this.productform.get('PCategory').value);
+        productdata.append('PName',this.productform.get('PName').value);
+        productdata.append('PDescription',this.productform.get('PDescription').value);
+        productdata.append('PPhoto',this.productform.get('PPhoto').value);
+        productdata.append('PPrice',this.productform.get('PPrice').value);
+        productdata.append('sellername',this.productform.get('sellername').value);
+        productdata.append('CompanyId',this.CompanyId)
+        
+          
+        
+          this.service.Addproduct(productdata).subscribe(
+            res=>{
+              alert("Added Succefully")
+            }
+          ); 
+
+    }
 }
 

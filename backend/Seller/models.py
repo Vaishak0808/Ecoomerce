@@ -27,9 +27,9 @@ class SellerProductDetails(models.Model):
     PName = models.CharField(max_length=200)
     PDescription = models.TextField(max_length=2000)
     PPrice = models.CharField(max_length=100)
-    PPhoto = models.ImageField(upload_to='ProductImages/')
+    PPhoto = models.FileField(upload_to='ProductImages/')
     sellername = models.CharField(max_length=200,null=False,default=False)
-    Seller = models.ForeignKey(SellerRegistration,related_name='seller',on_delete = models.CASCADE)
+    CompanyId = models.ForeignKey(SellerRegistration,related_name='sellerid',on_delete = models.CASCADE)
 
 class ProductOrderDetails(models.Model):
     OrderId = models.AutoField(primary_key=True)

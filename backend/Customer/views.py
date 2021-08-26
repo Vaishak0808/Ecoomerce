@@ -39,8 +39,15 @@ class customerregistration(APIView):
 class Welcome(APIView): 
     # Permission_classes = (IsAuthenticated)
     def get(self,request):
-        content ={'user':str(request.user),'userid':str(request.user.id),'UserType':str(request.user.UserType)}
-        print("-------------------------------------------CONTENTS",content)
+        # userobj = RegistrationDataTable.objects.get(id=request.user.id)
+        sellerobj = SellerRegistration.objects.get(id=request.user.id).CompanyId
+        # print('===============================================================================',userobj)
+        print('----------------------------------------------------------',sellerobj)
+        content ={'user':str(request.user),'userid':str(request.user.id),'UserType':str(request.user.UserType),'CompanyId':sellerobj}
+        # id ={'companyId':str(request.user.userid["CompanyId"])}
+        # id = {'companyId':str(request.userid["CompanyId"])}
+        # print("--------------------COmpanyID-----------------------",id)
+        # print("-------------------------Company------------------CONTENTS",content)
         return Response(content)
 
 

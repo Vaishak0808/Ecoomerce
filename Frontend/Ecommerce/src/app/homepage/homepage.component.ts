@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
+  showSellProduct : boolean=false;
   constructor() { 
-    if (localStorage.getItem("VC_CART_USER_TYPE") ) {
-      console.log('HOME-------------',localStorage.getItem("VC_CART_USER_TYPE") )
+     
+    if (localStorage.getItem("SellProductActive") ===  'show' ) {
+      this.showSellProduct = true 
     }
   }
 

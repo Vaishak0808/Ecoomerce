@@ -86,8 +86,8 @@ token :any ;
   }
   ViewProduct():Observable<any[]>{
     return this.http.get<any[]>(this.APIUrl+'/AddProduct/');
-
-  // Addproduct(formdata:any){
-  //   return this.http.post()
+  }
+  Addproduct(formdata:any){
+    return this.http.post(this.APIUrl+'/AddProduct/',formdata);
   }
 }

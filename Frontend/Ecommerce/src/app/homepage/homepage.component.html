@@ -1,4 +1,11 @@
 <div class="homeDiv">
     <app-header></app-header>
-    <app-body></app-body>
+    <ng-template  [ngIf]="showSellProduct"  [ngIfElse]="notShowSellProduct" >
+        <app-footer></app-footer>
+    </ng-template>
+    <ng-template #notShowSellProduct> 
+        <app-body></app-body>
+    </ng-template> 
+    
 </div>
+

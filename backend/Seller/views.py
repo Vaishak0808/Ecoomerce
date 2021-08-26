@@ -58,6 +58,7 @@ class addproducts(APIView):
             return Response('NO DATA ')
     parser_class = (FileUploadParser,)
     def post(self,request,*args,**kwarg):
+        
         product_serializer = SellerProductDetailsSerializer(data = request.data)
         print("////////////////////////////////////////////////////")
         print("product_Serializer",product_serializer)
@@ -66,6 +67,7 @@ class addproducts(APIView):
             product_serializer.save()
             return Response(product_serializer.data,status=status.HTTP_201_CREATED)
         else:
+            
             return Response( status=status.HTTP_400_BAD_REQUEST) 
 
 

@@ -1,8 +1,10 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdministratorComponent } from './administrator/administrator.component';
 // import { SellerComponent } from './seller/seller.component';
 import { CustomerComponent } from './customer/customer.component';
+import { FooterComponent } from './homepage/footer/footer.component';
+import { BodyComponent } from './homepage/body/body.component';
 import { ViewCustomerComponent } from './administrator/view-customer/view-customer.component';
 import { ViewApprovedSellerComponent } from './administrator/view-approved-seller/view-approved-seller.component';
 import { ViewRequestedSellerComponent } from './administrator/view-requested-seller/view-requested-seller.component';
@@ -14,7 +16,19 @@ import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
   {path:'',component:HomepageComponent},
-  {path:'Homepage',component:HomepageComponent},
+  {path:'Homepage',component:HomepageComponent,
+children:[
+  {
+
+    path:'body',
+    component:BodyComponent,
+  },
+  {
+
+    path:'footer',
+    component:FooterComponent,
+  }
+]},
   {path:'administrator',component:AdministratorComponent,
     children: [
       {
