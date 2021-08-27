@@ -168,7 +168,7 @@ export class HeaderComponent implements OnInit {
           else{
             // console.log("iam seller")
 
-            this.router.navigate(['Homepage' ]);
+            this.router.navigate(['Homepage']);
             // this.router.navigate(['Homepage',{'USER_TYPE':this.UserType}]);
           }
          

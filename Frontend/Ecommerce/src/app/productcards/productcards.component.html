@@ -10,14 +10,14 @@
 
 
 <div class="row mt-5 product_card_row">
-  <div class="col-md-3" *ngFor="let listofcard of listofcards">
+  <div class="col-md-3" *ngFor="let listofcard of ProductList.slice(0, 4);">
 
     <div class="card productCard">
-      <img class="card-img-top" src="../../assets/Slider-home/first_image_carousal1.jpg" alt="Card image cap">
+      <img class="card-img-top" src="{{APIUrl+listofcard.PPhoto}}" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-title">{{listofcard.PName}}</h5>
+        <p class="card-text">{{listofcard.PPrice}}</p>
+        <a href="#" class="btn btn-primary">Buy</a>
       </div>
     </div>
   </div>

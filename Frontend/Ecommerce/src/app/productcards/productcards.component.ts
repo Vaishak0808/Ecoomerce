@@ -1,19 +1,32 @@
 import { Component, OnInit } from '@angular/core';
+import { EserviceService } from '../eservice.service';
 
 @Component({
   selector: 'app-productcards',
   templateUrl: './productcards.component.html',
   styleUrls: ['./productcards.component.css']
 })
-export class ProductcardsComponent implements OnInit {
+export class ProductcardsComponent implements OnInit { 
+  ProductList:any=[];
+  readonly APIUrl = 'http://127.0.0.1:8000';
+  constructor(private service: EserviceService) {
+  }
+  
 
-  constructor() {
-    
-   }
 
   ngOnInit(): void {
+    this.viewProduct()
+
     
   }
+  viewProduct(){
+    this.service.ViewProduct().subscribe(data =>{
+    this.ProductList=data;
+    console.log(this.ProductList)
 
-  listofcards = ["1","2","3",'4','5','6','7',"1","2","3",'4','5','6','7']
+    });
+  
+
+
+}
 }

@@ -47,15 +47,14 @@ class sellerregistrations(APIView):
         Seller.delete()
         return Response("Deleted Successfully")
 
-
 class addproducts(APIView):
     def get(self,request):
         product = SellerProductDetails.objects.all()
         if product:
-            product_serializer = SellerProductDetailsSerializer(product)
+            product_serializer = SellerProductDetailsSerializer(product,many=True)
             return Response(product_serializer.data)
         else:
-            return Response('NO DATA ')
+            return Response("No DATA")
     parser_class = (FileUploadParser,)
     def post(self,request,*args,**kwarg):
         
@@ -107,42 +106,30 @@ class addproducts(APIView):
 #########################################################
 
 # Add,Update,Delete ProductDetails
-@csrf_exempt
-def AddProducts(request,id=0):
-    if request.method == "GET":
-        Product = SellerProductDetails.objects.all()
-        Product_serializer = SellerProductDetailsSerializer(Product, many=True)
-        return JsonResponse(Product_serializer.data, safe=False)
-    elif request.method == "POST":
-        Seller_data = JSONParser().parse(request)
-        Product_serializer = SellerProductDetailsSerializer(data = Seller_data)
-        if Product_serializer.is_valid():
-           Product_serializer.save()
-           return JsonResponse("Added Successfully", safe=False)
-        else:
-            return JsonResponse("Adding Failed" ,safe=False)
-    elif request.method == "PUT":
-        Product_data = JSONParser().parse(request)
-        Product = SellerProductDetails.objects.get(ProductId = Product_data['ProductId'])
-        Product_serializer = SellerProductDetailsSerializer(Product ,data = Product_data)
-        if Product_serializer.is_valid():
-            Product_serializer.save()
-            return JsonResponse("Updated Successfully", safe=False)
-        else:
-            return JsonResponse("Updating Failed", safe=False)
-    elif request.method == "DELETE":
-        Customer =SellerRegistration.objects.get(CId = id)
-        Customer.delete()
-        return JsonResponse("Deleted Successfully", safe=True)
-
-
-
-
-
-
-
-
-
-
-        # USER_TOKEN=request.headers.get('Authorization')
-        # print("-------    TOKEN -----------",request.headers.get('Authorization'))  
+# @csrf_exempt
+# def AddProducts(request,id=0):
+#     if request.method == "GET":
+#         Product = SellerProductDetails.objects.all()
+#         Product_serializer = SellerProductDetailsSerializer(Product, many=True)
+#         return JsonResponse(Product_serializer.data, safe=False)
+#     elif request.method == "POST":
+#         Seller_data = JSONParser().parse(request)
+#         Product_serializer = SellerProductDetailsSerializer(data = Seller_data)
+#         if Product_serializer.is_valid():
+#            Product_serializer.save()
+#            return JsonResponse("Added Successfully", safe=False)
+#         else:
+#             return JsonResponse("Adding Failed" ,safe=False)
+#     elif request.method == "PUT":
+#         Product_data = JSONParser().parse(request)
+#         Product = SellerProductDetails.objects.get(ProductId = Product_data['ProductId'])
+#         Product_serializer = SellerProductDetailsSerializer(Product ,data = Product_data)
+#         if Product_serializer.is_valid():
+#             Product_serializer.save()
+#             return JsonResponse("Updated Successfully", safe=False)
+#         else:
+#             return JsonResponse("Updating Failed", safe=False)
+#     elif request.method == "DELETE":
+#         Customer =SellerRegistration.objects.get(CId = id)
+#         Customer.delete()
+#         return JsonResponse("Deleted Successfully", safe=True)
