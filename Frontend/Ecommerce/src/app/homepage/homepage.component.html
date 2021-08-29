@@ -1,4 +1,4 @@
-<div class="homeDiv">
+<!-- <div class="homeDiv">
     <app-header></app-header>
     <ng-template  [ngIf]="showSellProduct"  [ngIfElse]="notShowSellProduct" >
         <app-footer></app-footer>
@@ -7,5 +7,22 @@
         <app-body></app-body>
     </ng-template> 
     
-</div>
+</div> -->
 
+<ngb-carousel #carousel [interval]="2000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
+    <ng-template ngbSlide *ngFor="let img of images; index as i">
+        <div class="picsum-img-wrapper">
+          <img class="carousalImg" [src]="img" >
+        </div>
+    </ng-template>
+  </ngb-carousel>
+
+
+  <!-- PRODUCT CARDS -->
+<!-- <div class="productcard-divz">
+  <div *ngFor="let cards of listofcards"> 
+        <app-productcards></app-productcards> 
+    </div>
+</div> -->
+
+<app-productcards></app-productcards>  

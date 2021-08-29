@@ -90,4 +90,7 @@ token :any ;
   Addproduct(formdata:any){
     return this.http.post(this.APIUrl+'/AddProduct/',formdata);
   }
+  viewSingleProduct(data:any){
+    return this.http.get<any[]>(this.APIUrl+'/GetSingleProduct/'+data);
+  }
 }

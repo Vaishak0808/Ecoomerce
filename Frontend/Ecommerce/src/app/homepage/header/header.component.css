@@ -116,3 +116,7 @@ color: black;
 .dropdown-menu.showdrop{
     display: block;
 }
+.LoginNav{
+    display: flex;
+    flex-direction: row;
+}

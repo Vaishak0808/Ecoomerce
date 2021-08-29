@@ -1,0 +1,15 @@
+.container{
+
+}
+.details{
+    display: flex;
+    flex-direction: row;
+}
+.productimage{
+    background-color: blue;
+    width:50%;
+}
+.productdetails{
+    width:50%;
+    /* background-color: black; */
+}

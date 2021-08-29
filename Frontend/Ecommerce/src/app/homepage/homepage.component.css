@@ -126,3 +126,6 @@ color: black;
 .dropdown-menu.showdrop{
     display: block;
 }
+.carousalImg{
+    height: 400px;
+}

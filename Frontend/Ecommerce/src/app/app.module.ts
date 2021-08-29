@@ -22,6 +22,7 @@ import { BodyComponent } from './homepage/body/body.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductcardsComponent } from './productcards/productcards.component';
 import { ViewProductComponent } from './view-product/view-product.component';
+import { BuyShowProductdetailsComponent } from './buy-show-productdetails/buy-show-productdetails.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ViewProductComponent } from './view-product/view-product.component';
     BodyComponent,
     ProductcardsComponent,
     ViewProductComponent,
+    BuyShowProductdetailsComponent,
     
   ],
   imports: [

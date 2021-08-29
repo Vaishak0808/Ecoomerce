@@ -4,21 +4,33 @@ from rest_framework import serializers
 from Seller.models import *
 from Customer.models import * 
 from Seller.seller_serializer import SellerRegistrationSerializer
- 
-
-class CustomerRegistrationSerializer(serializers.ModelSerializer):
-    
-    userid = SellerRegistrationSerializer (read_only = True , many=True)
-    class Meta:
-        model = RegistrationDataTable
-        fields = "__all__"
-
+from Customer.customer_serializer import *
 
 
 class ProductCartSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductCart
-        fields = ('')
+        fields = "__all__" 
+
+class CustomerRegistrationSerializer(serializers.ModelSerializer):
+    # CustomerId = ProductCartSerializer(read_only = True , many=True)
+    userid = SellerRegistrationSerializer (read_only = True , many=True)
+    class Meta:
+        model = RegistrationDataTable
+        fields = "__all__"
+
+# class SellerProductDetailsSerializer(serializers.ModelSerializer): 
+#     PId =  ProductCartSerializer(read_only = True , many=True)
+#     class Meta:
+#         model = SellerProductDetails
+#         fields = "__all__"
+
+
+
+
+
+
+
 class ProductFeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductFeedback

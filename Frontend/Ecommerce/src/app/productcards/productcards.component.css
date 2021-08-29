@@ -7,10 +7,21 @@
  } */
  .product_card_row{
     /* background-color: black; */
-    margin-right: 4%;
-    margin-left: 4%;
+    margin-right: 0%;
+    margin-left: 1%; 
  }
  .card-img-top{
+    padding: 5%;
+   
     width:100%;
-    height:171px
+    height:301px
+ }
+ .card-body{
+   margin: 0;
+   padding-top: 0%;
+   padding-bottom: 0; ; 
+ }
+ .productCard{
+    width: 90%;
+    margin-bottom: 20px;
  }

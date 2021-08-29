@@ -12,23 +12,19 @@ import { RegistrationComponent } from './customer/registration/registration.comp
 import { LoginComponent } from './customer/login/login.component';
 import { ViewProductsComponent } from './customer/view-products/view-products.component';
 import { HomepageComponent } from './homepage/homepage.component';
-
+import { BuyShowProductdetailsComponent } from './buy-show-productdetails/buy-show-productdetails.component';
+import { ProductcardsComponent } from './productcards/productcards.component';
 
 const routes: Routes = [
   {path:'',component:HomepageComponent},
-  {path:'Homepage',component:HomepageComponent,
-children:[
-  {
+  {path:'BuyProduct/:ProductId',component:BuyShowProductdetailsComponent},
+  {path:'Productcard',component:ProductcardsComponent},
+  // {path:'Homepage',component:HomepageComponent},
+  {path:'body',component:BodyComponent},
+  {path:'footer',component:FooterComponent},
 
-    path:'body',
-    component:BodyComponent,
-  },
-  {
+  
 
-    path:'footer',
-    component:FooterComponent,
-  }
-]},
   {path:'administrator',component:AdministratorComponent,
     children: [
       {
@@ -44,6 +40,7 @@ children:[
       component: ViewRequestedSellerComponent
       }]
       }
+    
   ]
 
 

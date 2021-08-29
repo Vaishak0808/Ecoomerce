@@ -168,7 +168,7 @@ export class HeaderComponent implements OnInit {
           else{
             // console.log("iam seller")
 
-            this.router.navigate(['Homepage']);
+            this.router.navigate(['/']);
             // this.router.navigate(['Homepage',{'USER_TYPE':this.UserType}]);
           }
          
@@ -178,6 +178,7 @@ export class HeaderComponent implements OnInit {
     logout(){
       this.service.logout()
       window.location.reload();
+      this.router.navigate(['/'])
     }
 
     // ADD Product

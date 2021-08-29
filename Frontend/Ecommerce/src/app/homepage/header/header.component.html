@@ -45,14 +45,14 @@
     <ng-template [ngIf]="isLoggedIn && UserType=='Customer'" [ngIfElse]="loggedOut">
       
       <div>
-        <a class="nav-link" href="#" (click)="sellerregistraioModal=true" (click)="calling()" data-toggle="modal" data-target="#sellerregmodal">
-          Sell Product</a>
+        <!-- <a class="nav-link" href="#" (click)="sellerregistraioModal=true" (click)="calling()" data-toggle="modal" data-target="#sellerregmodal">
+          Sell Product</a> -->
           <a class="nav-link" (click)="logout()">LogOut</a>
       </div>
     </ng-template>
     <ng-template [ngIf]="isLoggedIn && UserType == 'Seller'" [ngIfElse]="NO">
-      <a class="nav-link"   (click)="AddProductModal=true" data-toggle="modal" data-target="#AddProductModal"  (click)="calling()">Sell Product</a>
-      <a class="nav-link" href="#" >Order Details</a>
+      <!-- <a class="nav-link"   (click)="AddProductModal=true" data-toggle="modal" data-target="#AddProductModal"  (click)="calling()">Sell Product</a>
+      <a class="nav-link" href="#" >Order Details</a> -->
       <a class="nav-link" (click)="logout()">LogOut</a> 
     </ng-template>
     <ng-template #NO>
@@ -70,7 +70,34 @@
     </ng-template>
    </div>
 </nav>
+<div class="LoginNav">
+<ng-template [ngIf]="isLoggedIn && UserType=='Customer'" [ngIfElse]="loggedOut">
+      
+  <div>
+    <a class="nav-link" href="#" (click)="sellerregistraioModal=true" (click)="calling()" data-toggle="modal" data-target="#sellerregmodal">
+      Sell Product</a>
+      <!-- <a class="nav-link" (click)="logout()">LogOut</a> -->
+  </div>
+</ng-template>
+<ng-template [ngIf]="isLoggedIn && UserType == 'Seller'" [ngIfElse]="NO">
+  <a class="nav-link"   (click)="AddProductModal=true" data-toggle="modal" data-target="#AddProductModal"  (click)="calling()">Sell Product</a>
+  <a class="nav-link" href="#" >Order Details</a>
+  <!-- <a class="nav-link" (click)="logout()">LogOut</a>  -->
+</ng-template>
+<ng-template #NO>
+  <div>
 
+  </div>
+</ng-template>
+
+
+
+<ng-template #loggedOut>
+  <div>
+    </div>
+ 
+</ng-template>
+</div>
 
 <!-- Modal Login for user-->
 

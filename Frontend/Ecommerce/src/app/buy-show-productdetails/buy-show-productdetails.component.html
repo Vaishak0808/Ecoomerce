@@ -1,0 +1,24 @@
+<div class="container">
+    
+    <div class="details">
+        
+        <div class="productimage">
+            <img class="card-img-top" src= {{APIUrl+listofproduct.PPhoto}} alt="Card image cap">
+            <button class="btn btn-danger" (click)="addToCart()">ADD TO CART</button>
+            <button class="btn btn-success" (click)="BuyProduct()">BUY</button>
+        </div>
+        
+
+
+
+        <div class="productdetails">
+           <h1>{{listofproduct.PName}}</h1> 
+        </div>
+    </div>
+
+
+
+    <div class="similar-products">
+
+    </div>
+</div>

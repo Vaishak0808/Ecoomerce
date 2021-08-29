@@ -5,6 +5,7 @@ from rest_framework.parsers import JSONParser
 from django.http import JsonResponse
 from Seller.models import *
 from Customer.customer_serializer import *
+from Seller.seller_serializer import *
 from Customer.models import *
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
@@ -151,7 +152,7 @@ def productfeedback(request,id=0):
 
 def ViewCartProduct(request):
     if request.method == "GET":
-        Cart = ProductCart.objects.all()
+        Cart = ProductCart.objects.get()
         Cart_serializer = ProductCartSerializer(Cart , many=True)
         return JsonResponse(Cart_serializer.data, safe=False)
     elif request.method =="POST":
