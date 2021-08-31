@@ -5,8 +5,23 @@ from Seller.models import  RegistrationDataTable, SellerProductDetails, SellerRe
 from Seller.models import *
 from Customer.customer_serializer import *
 
+class ProductOrderDetailsDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductOrderDetails
+        fields ="__all__"
+class GETProductCartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductCart
+        fields = "__all__" 
+        depth =1
+class POSTProductCartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductCart
+        fields = "__all__" 
+    
 class SellerProductDetailsSerializer(serializers.ModelSerializer): 
-    # PId =  ProductCartSerializer(read_only = True , many=True)
+    PId =  POSTProductCartSerializer(read_only = True , many=True)
+    itemId = ProductOrderDetailsDetailsSerializer(read_only = True,many = True)
     class Meta:
         model = SellerProductDetails
         fields = "__all__"
@@ -30,7 +45,33 @@ class CustomerUpdationSerializser(serializers.ModelSerializer):
     class Meta:
         model =  RegistrationDataTable
         fields = ("UserType",)
-# class ProductOrderDetailsDetailsSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = ProductOrderDetails
-#         fields = ('Quantity','OrderDate')
+
+
+
+
+
+# CUSTOMER -------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+class CustomerRegistrationSerializer(serializers.ModelSerializer):
+    CustomerId = POSTProductCartSerializer(read_only = True , many=True)
+    userid = SellerRegistrationSerializer (read_only = True , many=True)
+    class Meta:
+        model = RegistrationDataTable
+        fields = "__all__"
+
+
+
+
+
+
+
+
+
+class ProductFeedbackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductFeedback
+        fields = ('AddFeedback','Rating')

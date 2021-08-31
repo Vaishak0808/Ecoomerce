@@ -23,6 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductcardsComponent } from './productcards/productcards.component';
 import { ViewProductComponent } from './view-product/view-product.component';
 import { BuyShowProductdetailsComponent } from './buy-show-productdetails/buy-show-productdetails.component';
+import { ViewProductCartComponent } from './view-product-cart/view-product-cart.component';
+import { BuyProductPageComponent } from './buy-product-page/buy-product-page.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { BuyShowProductdetailsComponent } from './buy-show-productdetails/buy-sh
     ProductcardsComponent,
     ViewProductComponent,
     BuyShowProductdetailsComponent,
+    ViewProductCartComponent,
+    BuyProductPageComponent,
     
   ],
   imports: [

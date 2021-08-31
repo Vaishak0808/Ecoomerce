@@ -2,7 +2,9 @@ from Seller.views import *
 from django.conf.urls import include, url;
 from django.urls import path
 # from rest_framework import routers
-from rest_framework.authtoken.views import ObtainAuthToken
+# from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.views import obtain_auth_token
+
 
 
 # router = routers.DefaultRouter() 
@@ -19,10 +21,16 @@ urlpatterns = [
     url(r'AddProduct/$',addproducts.as_view()),
     
     path('GetSingleProduct/<str:id>/',GetSingleProduct),
-    # url(r'^GetSingleProduct/<str:id>/',GetSingleProduct),
-    # url(r'^AddProduct/$',AddProducts), 
-    # url(r'^AddProduct/([0-9]+)$',AddProducts),
 
-    # url(r'^auth/',ObtainAuthToken.as_view()) , 
-    
+    path('AddToCart/',viewCartProduct.as_view()),
+
+      url(r'^feedback/$',productfeedback),
+      url(r'^feedback/([0-9]+)$',productfeedback),
+      url(r'^customerregistration/$',customerregistration.as_view()), 
+      url(r'^Welcome/',Welcome.as_view()),
+
+      url(r'^login/',obtain_auth_token,name="login"),
+
+
+      url('PlaceOrder/',PlaceOrder.as_view()),
 ] 

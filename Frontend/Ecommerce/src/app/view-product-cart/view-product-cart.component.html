@@ -1,0 +1,23 @@
+<table class="table table-stripped">
+    <thead>
+        <h1>MY CART</h1>
+    </thead>
+    <tbody>
+        <div  *ngFor="let item of cart"> 
+            <!-- <h1>{{item.ProductId[PName]}}</h1> -->
+            <!-- <h1>{{item.CartId}}</h1> -->
+            <h1>hhh</h1>
+            <h1>{{item.ProductId.PName}}</h1>
+        <tr>
+        <td><img class="Sellerimage"src="{{APIUrl+item.ProductId.PPhoto}}"></td>
+  
+        <td>{{item.ProductId.PName}}</td>
+        <td>{{item.ProductId.Sellername}}</td>
+        <td>{{item.ProductId.PPrice}}</td>
+            <td><button class="btn btn-danger">Reject</button></td>
+ 
+    
+    </div>
+
+    </tbody>
+</table>

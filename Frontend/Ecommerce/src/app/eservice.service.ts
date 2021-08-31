@@ -11,6 +11,7 @@ export class EserviceService {
 result_TOKEN : any;
 passing_Token : any;
 value:any;
+CART_DATA :any;
 token :any ;
   readonly APIUrl = 'http://127.0.0.1:8000';
  
@@ -93,4 +94,19 @@ token :any ;
   viewSingleProduct(data:any){
     return this.http.get<any[]>(this.APIUrl+'/GetSingleProduct/'+data);
   }
+
+// Cart
+ AddToCart(data:any){
+  
+   return this.http.post(this.APIUrl+'/AddToCart/',data);
+ }
+ getCartDetails(){
+
+  this.result_TOKEN = localStorage.getItem('VC_CART_TOKEN')
+  this.token = `Token `+ this.result_TOKEN
+  //  return this.http.get(this.APIUrl+'/AddToCart/',{headers: new HttpHeaders().set('Authorization',this.token)});
+  return this.http.get(this.APIUrl+'/AddToCart/',{headers: new HttpHeaders().set('Authorization',this.token)})
+  
+ }
+
 }

@@ -33,8 +33,29 @@ class SellerProductDetails(models.Model):
 
 class ProductOrderDetails(models.Model):
     OrderId = models.AutoField(primary_key=True)
-    ProductId = models.ForeignKey( to = SellerProductDetails,on_delete = models.CASCADE)
+    Address = models.CharField(max_length=1000,null=True)
+    ProductId = models.ForeignKey( to = SellerProductDetails,related_name="itemId",on_delete = models.CASCADE)
     Quantity = models.CharField(max_length=200)
-    CustomerId = models.ForeignKey( to = RegistrationDataTable,on_delete = models.CASCADE,null=False,default=False)
+    CustomerId = models.ForeignKey( to = RegistrationDataTable,related_name="CId",on_delete = models.CASCADE,null=False,default=False)
     OrderDate = models.DateField(auto_now_add=True)
+    TotalPrice = models.CharField(max_length=100,default=False)
     OrderStatus = models.CharField(max_length=200,default="Ordered")
+
+# CUSTOMER-------------------------------------------------------------------------------------------------------------------------------
+
+
+class ProductCart(models.Model):
+    CartId = models.AutoField(primary_key=True)
+    id = models.ForeignKey( to =RegistrationDataTable, related_name='CustomerId',on_delete=models.CASCADE,default='0000')
+    Quantity = models.BigIntegerField()
+    CDate = models.DateTimeField(auto_now_add=True)
+    ProductId = models.ForeignKey( to =SellerProductDetails, related_name='PId',on_delete=models.CASCADE)
+
+class ProductFeedback(models.Model):
+    FeedbackId = models.AutoField(primary_key=True)
+    AddFeedback = models.TextField(max_length=1000)
+    ProductId = models.ForeignKey( to = SellerProductDetails, on_delete = models.CASCADE)
+    CustomerId = models.ForeignKey( to = RegistrationDataTable, on_delete = models.CASCADE)
+    Rating = models.BigIntegerField()
+
+

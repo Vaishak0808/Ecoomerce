@@ -21,7 +21,7 @@ export class ProductcardsComponent implements OnInit {
     // this.viewAllProduct()
     this.service.ViewProduct().subscribe(data =>{
       this.ProductList=data;
-      console.log(this.ProductList)
+      // console.log(this.ProductList)
   
       });
     
@@ -35,11 +35,12 @@ export class ProductcardsComponent implements OnInit {
     
 
     // }
-    viewSingleProductDetails(ProductId:any){
-      console.log("buy");
-      // this.router.navigate( ['/BuyProduct',ProductId]).then();
-      this.router.navigateByUrl('/BuyProduct', { state: { ProductId:ProductId} })
-  }
+    // viewSingleProductDetails(ProductId:any){
+    //   console.log("buy");
+    //   // this.router.navigate( ['/BuyProduct',ProductId]).then();
+    //   this.router.navigateByUrl('/BuyProduct', { state: { ProductId:ProductId} })
+    //   // this.router.navigateByUrl('/BuyProduct')
+  // }
 
 
 }
