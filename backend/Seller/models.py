@@ -60,4 +60,3 @@ class ProductFeedback(models.Model):
     CustomerId = models.ForeignKey( to = RegistrationDataTable, on_delete = models.CASCADE)
     Rating = models.BigIntegerField()
 
-

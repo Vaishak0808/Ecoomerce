@@ -74,14 +74,15 @@
 <ng-template [ngIf]="isLoggedIn && UserType=='Customer'" [ngIfElse]="loggedOut">
       
   <div>
-    <a class="nav-link" href="#" (click)="sellerregistraioModal=true" (click)="calling()" data-toggle="modal" data-target="#sellerregmodal">
-      Sell Product</a>
+    <a class="nav-link" href="#" (click)="sellerregistraioModal=true" (click)="calling()" data-toggle="modal" data-target="#sellerregmodal">Sell Product</a>
+    <a class="nav-link" routerLink = 'Myorder'>MyOrder</a>
       <!-- <a class="nav-link" (click)="logout()">LogOut</a> -->
   </div>
 </ng-template>
 <ng-template [ngIf]="isLoggedIn && UserType == 'Seller'" [ngIfElse]="NO">
   <a class="nav-link"   (click)="AddProductModal=true" data-toggle="modal" data-target="#AddProductModal"  (click)="calling()">Sell Product</a>
-  <a class="nav-link" href="#" >Order Details</a>
+  <a class="nav-link" routerLink = 'CustomerOrder'>Order Details</a>
+  <a class="nav-link" routerLink = 'Myorder'>MyOrder</a>
   <!-- <a class="nav-link" (click)="logout()">LogOut</a>  -->
 </ng-template>
 <ng-template #NO>

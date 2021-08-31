@@ -116,13 +116,14 @@ class customerregistration(APIView):
 class Welcome(APIView): 
     # Permission_classes = (IsAuthenticated)
     def get(self,request):
-        global  USER_TOKEN
+        global USER_TOKEN
         USER_TOKEN = request.user.id 
+        print("WELCOME USERID++++++++++++++++++++++++++++",USER_TOKEN)
         if request.user.UserType == 'Seller':
         # userobj = RegistrationDataTable.objects.get(id=request.user.id)
             sellerobj = SellerRegistration.objects.get(id=request.user.id).CompanyId
         # print('===============================================================================',userobj)
-            print('----------------------------------------------------------',sellerobj)
+            # print('----------------------------------------------------------',sellerobj)
             if sellerobj:
                 content ={'user':str(request.user),'userid':str(request.user.id),'UserType':str(request.user.UserType),'CompanyId':sellerobj}
                 return Response(content)
@@ -163,8 +164,9 @@ def productfeedback(request,id=0):
 # View Cart ###################################
 class viewCartProduct(APIView):
     def get(self,request): 
-        id = request.user.id 
+        id = USER_TOKEN
         Cart = ProductCart.objects.all().filter(id = id) 
+
         if(Cart):
             cart_serializer = GETProductCartSerializer(Cart ,many = True)
             return Response(cart_serializer.data) 
@@ -179,12 +181,6 @@ class viewCartProduct(APIView):
         else:
             return Response("Adding Failed")
 class PlaceOrder(APIView):
-    def get(self,request):
-        order = ProductOrderDetails.objects.all()
-        if(order):
-            order_serializer = ProductOrderDetailsDetailsSerializer(order , many=True)
-            return Response(order_serializer.data)
-        return Response("Empty")
     def post(self,request,*args,**kwarg):
         print("INSIDE POST+++++++++++++++++++++++++++++++++++++")
         order_serializer = ProductOrderDetailsDetailsSerializer(data = request.data)
@@ -210,7 +206,14 @@ class getUserAndProduct(APIView):
         else:
             return  Response("No DATA")
     
-
+class myOrders(APIView):
+    def get(self,request):
+        user_id =  USER_TOKEN
+        order = ProductOrderDetails.objects.all().filter(CustomerId = user_id)
+        if(order):
+            order_serializer = ProductOrderDetailsDetailsSerializer(order , many=True)
+            return Response(order_serializer.data)
+        return Response("Empty")
 
 
 

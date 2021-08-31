@@ -103,6 +103,7 @@ token :any ;
  getCartDetails(){
   this.result_TOKEN = localStorage.getItem('VC_CART_TOKEN')
   this.token = `Token`+ this.result_TOKEN
+  console.log("token:",this.token)
   //  return this.http.get(this.APIUrl+'/AddToCart/',{headers: new HttpHeaders().set('Authorization',this.token)});
   return this.http.get(this.APIUrl+'/AddToCart/',{headers: new HttpHeaders().set('Authorization',this.token)})
   
@@ -113,6 +114,9 @@ token :any ;
  }
  AddOrders(data:any){
    return this.http.post(this.APIUrl+'/PlaceOrder/',data)
+ }
+ MyOrder(){
+     return this.http.get(this.APIUrl+'/myOrders/')
  }
 
 }

@@ -18,7 +18,7 @@ urlpatterns = [
     url(r'^sellerregistrations/$',sellerregistrations.as_view()),
 
     # Add,delete,update Product
-    url(r'AddProduct/$',addproducts.as_view()),
+    url(r'AddProduct/',addproducts.as_view()),
     
     path('GetSingleProduct/<str:id>/',GetSingleProduct),
     path('GetUserAndProduct/<str:id>/',getUserAndProduct.as_view()),
@@ -34,4 +34,5 @@ urlpatterns = [
 
 
       url('PlaceOrder/',PlaceOrder.as_view()),
+      url('myOrders/',myOrders.as_view()),
 ] 

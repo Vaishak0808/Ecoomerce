@@ -1,3 +1,5 @@
+import { ViewCustomerOrdersComponent } from './view-customer-orders/view-customer-orders.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { BuyProductPageComponent } from './buy-product-page/buy-product-page.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,11 +21,13 @@ import { ViewProductCartComponent } from './view-product-cart/view-product-cart.
 
 const routes: Routes = [
   {path:'',component:HomepageComponent},
+  {path:'CustomerOrder',component:ViewCustomerOrdersComponent},
+  {path:'Myorder',component:MyOrdersComponent},
   {path :'Placeorder/:ProductId',component:BuyProductPageComponent},
   {path:'BuyProduct/:ProductId',component:BuyShowProductdetailsComponent},
   // {path:'BuyProduct',component:BuyShowProductdetailsComponent},
   
-  {path:'Homepage',component:HomepageComponent},
+  // {path:'Homepage',component:HomepageComponent},
   {path:'body',component:BodyComponent},
   {path:'footer',component:FooterComponent},
   {path:'myCart',component:ViewProductCartComponent},

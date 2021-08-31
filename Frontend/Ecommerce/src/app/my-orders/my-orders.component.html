@@ -1,0 +1,14 @@
+<table class="table table-dark">
+    <tbody>
+        <tr *ngFor="let data of Myorder">
+            <td><img class="sellerimage" src={{APIUrl+data.ProductId.PPhoto}}></td>
+            <td>{{data.ProductId.PName}}{{data.ProductId.PDescription}}</td>
+            
+            <td><h5>Order Date:</h5>{{data.OrderDate}}</td>
+            <td>{{data.OrderStatus}}</td>
+            <td>{{data.CompanyEmail}}</td>
+            <td><button class="btn btn-danger" (click)="CancelOrder()" >Cancel Order</button></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>

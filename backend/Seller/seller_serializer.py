@@ -9,6 +9,7 @@ class ProductOrderDetailsDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductOrderDetails
         fields ="__all__"
+        depth =1
 class GETProductCartSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductCart

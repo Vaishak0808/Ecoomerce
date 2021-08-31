@@ -18,7 +18,7 @@ product:any=[]
       if (localStorage.getItem("VC_CART_TOKEN") ) {
       this.service.getCartDetails().subscribe(res=>{
       this.cart = res;
-      // console.log(res)
+      console.log(res)
     })
   }
 }

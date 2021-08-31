@@ -25,6 +25,8 @@ import { ViewProductComponent } from './view-product/view-product.component';
 import { BuyShowProductdetailsComponent } from './buy-show-productdetails/buy-show-productdetails.component';
 import { ViewProductCartComponent } from './view-product-cart/view-product-cart.component';
 import { BuyProductPageComponent } from './buy-product-page/buy-product-page.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { ViewCustomerOrdersComponent } from './view-customer-orders/view-customer-orders.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { BuyProductPageComponent } from './buy-product-page/buy-product-page.com
     BuyShowProductdetailsComponent,
     ViewProductCartComponent,
     BuyProductPageComponent,
+    MyOrdersComponent,
+    ViewCustomerOrdersComponent,
     
   ],
   imports: [
