@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'AddProduct/$',addproducts.as_view()),
     
     path('GetSingleProduct/<str:id>/',GetSingleProduct),
+    path('GetUserAndProduct/<str:id>/',getUserAndProduct.as_view()),
 
     path('AddToCart/',viewCartProduct.as_view()),
 

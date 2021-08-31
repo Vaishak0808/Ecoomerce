@@ -23,7 +23,7 @@ const routes: Routes = [
   {path:'BuyProduct/:ProductId',component:BuyShowProductdetailsComponent},
   // {path:'BuyProduct',component:BuyShowProductdetailsComponent},
   
-  // {path:'Homepage',component:HomepageComponent},
+  {path:'Homepage',component:HomepageComponent},
   {path:'body',component:BodyComponent},
   {path:'footer',component:FooterComponent},
   {path:'myCart',component:ViewProductCartComponent},

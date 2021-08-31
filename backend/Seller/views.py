@@ -25,7 +25,7 @@ from django.http import Http404
 ##########################################################
 
 #Seller Registration,Update,delete
-
+# global USER_TOKEN 
 class sellerregistrations(APIView):
     def get(self,request):
         Seller = SellerRegistration.objects.all()
@@ -77,14 +77,13 @@ class addproducts(APIView):
 def GetSingleProduct(request,id):
     # print("id",id)
     if request.method == "GET":
-        # print("-----------------------------------------------------------------------------------------")
         product = SellerProductDetails.objects.get(ProductId = id) 
         # print(product)
+        content = {}
         if product:
-            # print('--------------------')
             getSingleSerialiset = SellerSingleProductDetailsSerializer(product,many = False)
-            # print(getSingleSerialiset.data)
-            return JsonResponse(getSingleSerialiset.data)
+            
+            return JsonResponse(getSingleSerialiset.data,safe=False)
         else:
             return JsonResponse("No DATA") 
 
@@ -117,6 +116,8 @@ class customerregistration(APIView):
 class Welcome(APIView): 
     # Permission_classes = (IsAuthenticated)
     def get(self,request):
+        global  USER_TOKEN
+        USER_TOKEN = request.user.id 
         if request.user.UserType == 'Seller':
         # userobj = RegistrationDataTable.objects.get(id=request.user.id)
             sellerobj = SellerRegistration.objects.get(id=request.user.id).CompanyId
@@ -161,7 +162,7 @@ def productfeedback(request,id=0):
 
 # View Cart ###################################
 class viewCartProduct(APIView):
-    def get(self,request):
+    def get(self,request): 
         id = request.user.id 
         Cart = ProductCart.objects.all().filter(id = id) 
         if(Cart):
@@ -171,11 +172,8 @@ class viewCartProduct(APIView):
             return Response("Empty")
             
     def post(self,request,*args,**kwarg):
-        print("++++++++++++++++++++++++RECIVED DATA",request.data)
         Cart_serializer = POSTProductCartSerializer(data = request.data)
         if Cart_serializer.is_valid():
-            print("===========================================================================================================")
-            print("cartserializer",Cart_serializer.validated_data)
             Cart_serializer.save()
             return Response("Added Successfully")
         else:
@@ -195,6 +193,24 @@ class PlaceOrder(APIView):
             return Response("Added Successfully")
         else:
             return Response("Adding Failed")
+
+class getUserAndProduct(APIView):
+    def get(self,request,id):
+        user_id =   USER_TOKEN
+        product = SellerProductDetails.objects.get(ProductId = id)
+        user_details = RegistrationDataTable.objects.get(id = user_id) 
+        content = {}
+        if product:
+            getSingleSerializer = SellerSingleProductDetailsSerializer(product,many = False)
+            getUserSerializer = CustomerRegistrationSerializer(user_details,many = False)
+            content['product'] = getSingleSerializer.data
+            content['userdetails'] = getUserSerializer.data
+            
+            return Response(content)
+        else:
+            return  Response("No DATA")
+    
+
 
 
 

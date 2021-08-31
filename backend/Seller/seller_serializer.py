@@ -25,6 +25,7 @@ class SellerProductDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = SellerProductDetails
         fields = "__all__"
+        
 
 class SellerSingleProductDetailsSerializer(serializers.ModelSerializer): 
     class Meta:

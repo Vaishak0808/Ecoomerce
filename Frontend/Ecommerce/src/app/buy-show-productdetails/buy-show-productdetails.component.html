@@ -6,8 +6,16 @@
         <div class="productimage">
             <img class="card-img-top" src= {{APIUrl+listofproduct.PPhoto}} alt="Card image cap">  
             <h1>{{listofproduct.ProductId}}</h1>
-            <button class="btn btn-danger" (click)="addToCart()">ADD TO CART</button>
-            <button class="btn btn-success"  [routerLink]="['/Placeorder',listofproduct.ProductId ]">BUY</button>
+            <button class="btn btn-danger" (click)="addToCart()">ADD TO CART</button> 
+
+            <ng-template [ngIf]="USER_TOKEN" [ngIfElse]="DISABLED_BUY">   
+                <div>  <button class="btn btn-success" [routerLink]="['/Placeorder',listofproduct.ProductId]">BUY</button> </div>
+              </ng-template>
+              <ng-template #DISABLED_BUY>
+                <div>   <button class="btn btn-success" disabled>BUY</button>  </div>
+            </ng-template>
+ 
+            
         </div>
         
 

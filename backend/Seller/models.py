@@ -40,6 +40,8 @@ class ProductOrderDetails(models.Model):
     OrderDate = models.DateField(auto_now_add=True)
     TotalPrice = models.CharField(max_length=100,default=False)
     OrderStatus = models.CharField(max_length=200,default="Ordered")
+    Phonenumber = models.CharField(max_length=100, null = True)
+    PinCode = models.CharField(max_length=100,null=True)
 
 # CUSTOMER-------------------------------------------------------------------------------------------------------------------------------
 

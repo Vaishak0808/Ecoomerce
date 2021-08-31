@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EserviceService } from '../eservice.service';
 
 
@@ -12,16 +12,21 @@ export class BuyShowProductdetailsComponent implements OnInit {
 
 readonly APIUrl = 'http://127.0.0.1:8000';
 
+USER_TOKEN :boolean=false;;
 listofproduct :any =[]; 
 response :any |undefined;
 userid :any |undefined;
-  constructor(private service: EserviceService,private route: ActivatedRoute) { }
+  constructor(private service: EserviceService,private route: ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("VC_CART_TOKEN")){
+      this.USER_TOKEN =true
+    }
     let id = this.route.snapshot.params.ProductId; 
     this.service.viewSingleProduct(id).subscribe(data =>{
       this.listofproduct=data;
-      // console.log("singledata",data)
+
+      console.log("singledata",data)
     }) 
   }
   addToCart(){
@@ -29,18 +34,13 @@ userid :any |undefined;
     if(localStorage.getItem("VC_CART_TOKEN")){
       this.service.Welcome().subscribe(res=>{ 
         this.response = res
-        this.userid = this.response.userid
-        // console.log("userid :",this.userid)
-        // console.log("pId :",this.route.snapshot.params.ProductId)
-      
+        this.userid = this.response.userid       
         var val = {
         Quantity:2,
         ProductId:this.route.snapshot.params.ProductId,
         id:this.userid
       }
-      // console.log("SENDING CART DATA",val)
-    
-      this.service.AddToCart(val).subscribe(res=>{
+        this.service.AddToCart(val).subscribe(res=>{
         alert(res.toString())
       })
      })
@@ -49,6 +49,16 @@ userid :any |undefined;
       alert("PLease Login")
     }
   }
+  // buyproduct(Productid:any){
+  //   if(localStorage.getItem("VC_CART_TOKEN")){
+  //     console.log('INSIDE BUY PRODUCT FUNC CALL ==>',Productid)
+  //     this.router.navigateByUrl('/Placeorder',);
+  //     // this.router.navigateByUrl('/Placeorder',{state:{ProductId :Productid}});
+  //   }
+  //   else{
+  //     alert("Please Login")
+  //   }
+  // }
   
 }
 

@@ -1,1 +1,45 @@
-<p>buy-product-page works!</p>
+<div class="container">
+    <div class="address">
+        <ng-template [ngIf]="state == false" [ngIfElse]="NO">
+    
+                <div class="GridPersonDetails"> 
+                        <div class="grid-item item1">
+                            <h3 >{{Address}}</h3>
+                            <h3 >{{Pincode}}</h3>
+                            <h3 >{{Phonenumber}}</h3> 
+                        </div>
+                        <div class="item2">
+                            <button class="btnAddr" (click) = changeaddress()>Change</button>                  
+                        </div>
+                </div>
+            
+        </ng-template>
+    </div>
+        <ng-template #NO>
+        <div>
+           <textarea name="Address" id="Address" cols="30" rows="10"  [(ngModel)]="Address"></textarea> 
+           <input type="number" class="textbox" placeholder="Enter PinCode" [(ngModel)] ="Pincode">
+           <input type="number"class="textbox" placeholder="Enter Phone Number" [(ngModel)]="Phonenumber">
+           <button (click) = updatestate()>Update</button>
+
+        </div>
+        </ng-template>
+    
+    <div class="product-details" >
+        <div class="image">
+            <img class="card-img-top" src= {{APIUrl+listofproduct.product.PPhoto}} alt="Card image cap"> 
+        </div>
+        <div class="details">
+            <h1>{{listofproduct.product.PName}}</h1>
+            <h1>{{listofproduct.product.PDescription}}</h1>
+            <h1>{{listofproduct.product.PPrice}}</h1>
+            Quantity<button (click)="sub()">-</button><input type='text' [(ngModel)] = "count"><button (click)="add()">+</button>
+            <h1>Total Price:{{totalprice}}</h1>
+        </div>
+        
+        
+    </div> 
+    <div class="order-btn">
+        <button class="btn btn-primary" (click)="placeorder()">Placeorder</button>
+    </div>
+</div>

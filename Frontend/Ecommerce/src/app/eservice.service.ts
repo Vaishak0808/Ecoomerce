@@ -101,12 +101,18 @@ token :any ;
    return this.http.post(this.APIUrl+'/AddToCart/',data);
  }
  getCartDetails(){
-
   this.result_TOKEN = localStorage.getItem('VC_CART_TOKEN')
-  this.token = `Token `+ this.result_TOKEN
+  this.token = `Token`+ this.result_TOKEN
   //  return this.http.get(this.APIUrl+'/AddToCart/',{headers: new HttpHeaders().set('Authorization',this.token)});
   return this.http.get(this.APIUrl+'/AddToCart/',{headers: new HttpHeaders().set('Authorization',this.token)})
   
+ }
+ GetUserAndProduct(data:any){
+  // console.log(this.result_TOKEN)
+  return this.http.get<any[]>(this.APIUrl+'/GetUserAndProduct/'+data)
+ }
+ AddOrders(data:any){
+   return this.http.post(this.APIUrl+'/PlaceOrder/',data)
  }
 
 }
