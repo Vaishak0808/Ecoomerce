@@ -1,1 +1,38 @@
-<p>view-customer-orders works!</p>
+<div class="fluid">
+    <h1>ORDERS.....</h1>
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th>OrderId</th>
+                <th>Product</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Order-Date</th>
+                <th>Total Amount</th>
+                <th>Address</th>
+                <th>Pincode</th>
+                <th>Phonenumber</th>
+                <th>Status</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of CustomerOrders">
+                <td>{{data.OrderId}}</td> 
+                <td class="ImageDiv"><img class="sellerimage" src={{APIUrl+data.ProductId.PPhoto}}></td>
+
+                <td>{{data.ProductId.PName}}<br>{{data.ProductId.PDescription}}</td>
+                <td>{{data.Quantity}}</td>
+                <td>{{data.OrderDate}}</td>
+                <td>{{data.TotalPrice}}</td>
+                <td>{{data.Address}}</td>
+                
+                <td>{{data.PinCode}}</td>
+                <td>{{data.Phonenumber}}</td>
+                <td>{{data.OrderStatus}}</td> 
+                <td><button class="btn btn-danger">Change</button></td>               
+            </tr>
+        </tbody>
+    </table>
+    
+</div>

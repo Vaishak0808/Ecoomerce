@@ -181,10 +181,35 @@ class viewCartProduct(APIView):
         else:
             return Response("Adding Failed")
 class PlaceOrder(APIView):
+    def get(self,request):
+        # print("inside PLaceOrder+++")
+        user_id = USER_TOKEN
+        Company = SellerRegistration.objects.get(id = user_id)
+        products = SellerProductDetails.objects.all().filter(CompanyId = Company.CompanyId)
+        content = []
+        details = []
+        for items in products:
+            Orders = ProductOrderDetails.objects.all().filter(ProductId = items.ProductId)
+            if Orders:
+                details.append(Orders)
+        # print("\n\ndetails::::::::::::::::::::::::::::::::::::::::::::::::::::",details) 
+        # return Response(order_Serializers.data)
+        for data in details:
+            print("\nDAATAATATATAT",data)
+            for i in data:
+                # print("\nINSIDE IF--------------------------------------------------------------",i.Address)
+                order_Serializers = ProductOrderDetailsDetailsSerializer(i , many =False)
+                content.append(order_Serializers.data)
+        # print("\n\nCONTENT ______________",order_Serializers.data) 
+        return Response(content)
+            
     def post(self,request,*args,**kwarg):
-        print("INSIDE POST+++++++++++++++++++++++++++++++++++++")
-        order_serializer = ProductOrderDetailsDetailsSerializer(data = request.data)
+        print("INSIDE POST-=================------------------------------",request.data)
+
+        order_serializer = PostOrderDetailsSerializer(data = request.data)
+        print('serializer-----------------------------',order_serializer)
         if order_serializer.is_valid():
+            print('valid-----------------------------------')
             order_serializer.save()
             return Response("Added Successfully")
         else:

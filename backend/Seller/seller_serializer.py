@@ -3,13 +3,17 @@ from django.db.models import fields
 from rest_framework import serializers
 from Seller.models import  RegistrationDataTable, SellerProductDetails, SellerRegistration 
 from Seller.models import *
-from Customer.customer_serializer import *
+from Customer.customer_serializer import * 
 
 class ProductOrderDetailsDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductOrderDetails
         fields ="__all__"
         depth =1
+class PostOrderDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductOrderDetails
+        fields = "__all__"
 class GETProductCartSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductCart
@@ -22,6 +26,7 @@ class POSTProductCartSerializer(serializers.ModelSerializer):
     
 class SellerProductDetailsSerializer(serializers.ModelSerializer): 
     PId =  POSTProductCartSerializer(read_only = True , many=True)
+    itemId = PostOrderDetailsSerializer(read_only = True,many = True)
     itemId = ProductOrderDetailsDetailsSerializer(read_only = True,many = True)
     class Meta:
         model = SellerProductDetails
@@ -59,6 +64,7 @@ class CustomerUpdationSerializser(serializers.ModelSerializer):
 
 
 class CustomerRegistrationSerializer(serializers.ModelSerializer):
+    CId = PostOrderDetailsSerializer(read_only = True,many = True)
     CustomerId = POSTProductCartSerializer(read_only = True , many=True)
     userid = SellerRegistrationSerializer (read_only = True , many=True)
     class Meta:

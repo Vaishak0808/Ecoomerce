@@ -118,5 +118,8 @@ token :any ;
  MyOrder(){
      return this.http.get(this.APIUrl+'/myOrders/')
  }
+CustomerOrderDetails(){
+  return this.http.get(this.APIUrl+'/PlaceOrder/')
+}
 
 }
