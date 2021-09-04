@@ -1,45 +1,64 @@
-<div class="container">
+<div class="container-fluid">
+    
+    <div class="product-details" >
+        
+        <div class="divimage">
+            <img class="card-img-top" src= {{APIUrl+listofproduct.product.PPhoto}} alt="Card image cap"> 
+        
+        <div class="Parentdiv" >
+            <div class="quantity">
+                <button class="Minusbtn button" (click)="sub()">-</button>
+                <input type='text' class="count" [(ngModel)] = "count">
+                <button  class="Plusbtn button" (click)="add()">+</button>
+            </div>
+        </div>
+      </div>
+        <div class="details">
+            <h3>{{listofproduct.product.PName}}</h3>
+            <h5>{{listofproduct.product.PDescription}}</h5>
+            <h5>{{listofproduct.product.PPrice}}</h5>
+           
+            <h5>Total Price:{{totalprice}}</h5>
+            <div class="order-btn">
+            <button class="btn btn-primary" (click)="placeorder()">Placeorder</button>
+            </div>
+        </div>
+         
+    </div> 
     <div class="address">
         <ng-template [ngIf]="state == false" [ngIfElse]="NO">
     
                 <div class="GridPersonDetails"> 
-                        <div class="grid-item item1">
-                            <h3 >{{Address}}</h3>
-                            <h3 >{{Pincode}}</h3>
-                            <h3 >{{Phonenumber}}</h3> 
-                        </div>
-                        <div class="item2">
-                            <button class="btnAddr" (click) = changeaddress()>Change</button>                  
-                        </div>
+                    <h3 class="grid-item item3" >DELIVERY ADDRESS</h3>
+                    <div class="grid-item item1"> 
+                        <h5> {{Address}}</h5>
+                        <h5 >{{Pincode}}</h5>
+                        <h5 >{{Phonenumber}}</h5> 
+                    </div>
+                    <div class=" grid-item item2">
+                        <button class="btnAddr" (click) = changeaddress()>Change</button>                  
+                    </div>
                 </div>
             
         </ng-template>
-    </div>
         <ng-template #NO>
-        <div>
-           <textarea name="Address" id="Address" cols="30" rows="10"  [(ngModel)]="Address"></textarea> 
-           <input type="number" class="textbox" placeholder="Enter PinCode" [(ngModel)] ="Pincode">
+            <div class="GridPersonDetailsupdate">  
+                <textarea  class ="gridItem item4 textarea"name="Address"   id="Address" rows="3"  [(ngModel)]="Address"></textarea>
+                <input type="number" class="textbox gridItem item5" id="Phonenumber"placeholder="Enter PinCode" [(ngModel)] ="Pincode">
+                <input type="number"class="textbox gridItem item6" placeholder="Enter Phone Number" [(ngModel)]="Phonenumber">
+                <button class="btnUpdate item7" (click) = updatestate() >Update</button>                  
+             
+            </div>
+        <!-- <div class="Update-div">
+           <textarea  class ="textarea"name="Address"  id="Address"  cols="30" rows="10"  [(ngModel)]="Address"></textarea>
+           <input type="number" class="textbox" id="Phonenumber"placeholder="Enter PinCode" [(ngModel)] ="Pincode">
            <input type="number"class="textbox" placeholder="Enter Phone Number" [(ngModel)]="Phonenumber">
-           <button (click) = updatestate()>Update</button>
+           <button (click) = updatestate() class="btnAddr">Update</button>
 
-        </div>
+        </div> -->
         </ng-template>
-    
-    <div class="product-details" >
-        <div class="image">
-            <img class="card-img-top" src= {{APIUrl+listofproduct.product.PPhoto}} alt="Card image cap"> 
-        </div>
-        <div class="details">
-            <h1>{{listofproduct.product.PName}}</h1>
-            <h1>{{listofproduct.product.PDescription}}</h1>
-            <h1>{{listofproduct.product.PPrice}}</h1>
-            Quantity<button (click)="sub()">-</button><input type='text' [(ngModel)] = "count"><button (click)="add()">+</button>
-            <h1>Total Price:{{totalprice}}</h1>
-        </div>
-        
-        
-    </div> 
-    <div class="order-btn">
-        <button class="btn btn-primary" (click)="placeorder()">Placeorder</button>
     </div>
+    
+    
+   
 </div>

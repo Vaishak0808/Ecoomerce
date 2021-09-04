@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EserviceService } from '../eservice.service';
-
+import { EserviceService } from '../eservice.service'; 
 
 @Component({
   selector: 'app-buy-show-productdetails',
@@ -36,29 +35,19 @@ userid :any |undefined;
         this.response = res
         this.userid = this.response.userid       
         var val = {
-        Quantity:2,
+        Quantity:1,
         ProductId:this.route.snapshot.params.ProductId,
         id:this.userid
       }
         this.service.AddToCart(val).subscribe(res=>{
-        alert(res.toString())
+           
       })
      })
     }
     else{
       alert("PLease Login")
     }
-  }
-  // buyproduct(Productid:any){
-  //   if(localStorage.getItem("VC_CART_TOKEN")){
-  //     console.log('INSIDE BUY PRODUCT FUNC CALL ==>',Productid)
-  //     this.router.navigateByUrl('/Placeorder',);
-  //     // this.router.navigateByUrl('/Placeorder',{state:{ProductId :Productid}});
-  //   }
-  //   else{
-  //     alert("Please Login")
-  //   }
-  // }
+  } 
   
 }
 

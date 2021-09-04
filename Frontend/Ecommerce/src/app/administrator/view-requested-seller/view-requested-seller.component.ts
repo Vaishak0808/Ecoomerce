@@ -41,12 +41,9 @@ export class ViewRequestedSellerComponent implements OnInit {
   }
   RejectSeller(data:any){
     console.log('Calling reject sellr',data)
-    var val={
-      CompanyId:data
-    } 
+    
     // var val = data
-    console.log(val) 
-    this.service.Rejectseller(val).subscribe(res=>{
+    this.service.Rejectseller(data).subscribe(res=>{
       alert("Do you?")
     }); 
       this.viewSellerlist(); 

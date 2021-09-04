@@ -1,4 +1,6 @@
 from django.conf.urls import url
+from django.urls import path
+
 from Administrator.views import *
 
 urlpatterns = [
@@ -8,5 +10,7 @@ urlpatterns = [
         url(r'^ViewApprovedSellerDetails/$',ViewApprovedSellerDetails),
         # view Seller to Approve
         url(r'^ViewSellerToApproveDetails/$',ViewSellerToApproveDetails),
-        url(r'^ViewSellerToApproveDetails/([0-9]+)$',ViewSellerToApproveDetails)
+        url('ViewSellerToApproveDetails/<int:id>/',ViewSellerToApproveDetails),
+        path('rejectrequestedseller/<str:id>/',rejectrequestedseller)
+        
 ]

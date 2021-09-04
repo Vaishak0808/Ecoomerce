@@ -1,23 +1,49 @@
-<table class="table table-stripped">
-    <thead>
-        <h1>MY CART</h1>
-    </thead>
-    <tbody>
-        <div  *ngFor="let item of cart"> 
-            <!-- <h1>{{item.ProductId[PName]}}</h1> -->
-            <!-- <h1>{{item.CartId}}</h1> -->
-            <h1>hhh</h1>
-            <h1>{{item.ProductId.PName}}</h1>
-        <tr>
-        <td><img class="Sellerimage"src="{{APIUrl+item.ProductId.PPhoto}}"></td>
-  
-        <td>{{item.ProductId.PName}}</td>
-        <td>{{item.ProductId.Sellername}}</td>
-        <td>{{item.ProductId.PPrice}}</td>
-            <td><button class="btn btn-danger">Reject</button></td>
- 
-    
-    </div>
+<div class="container">
+    <div class="table-div">
+    <ng-template [ngIf]="cart" [ngIfElse]="NO">
+        
+            <table class="table table-borderless">
+                <tbody>
+                    <div  *ngFor="let item of cart"> 
+                        <tr>
+                            <td>
+                                <div class="image-div">
+                                    <td><img class="Sellerimage"src="{{APIUrl+item.ProductId.PPhoto}}"></td>
+                                    <div class="quantity-div">
+                                        <button class="btn-quatity">-</button>
+                                        <input class="quantity-text" type="text">
+                                        <button class="btn-quatity">+</button>
+                                    </div>
+                                </div> 
+                            </td>
+                        
+                            <td class="PDetails">
+                                
+                                    <div class="PSub">
+                                        <div>{{item.ProductId.PName}}</div>
+                                        <div>{{item.ProductId.PDescription| slice :0:10}}</div>
+                                        <div>{{item.ProductId.PPrice}}</div>
+                                        <div><button class="btn btn-danger" (click) = "deleteCartProduct(item.CartId)">Remove</button></div>
 
-    </tbody>
-</table>
+                                    </div>
+                                                        
+                            </td> 
+                        
+                        </tr>
+                            
+                        
+                    </div>
+            
+                </tbody>
+            </table>
+            </ng-template>
+            <ng-template #NO> 
+                <h5>CART IS EMPTY</h5>
+            </ng-template>
+        
+    </div>
+    <div class="personal-details">
+        <h1>sefwer</h1>
+
+    </div>
+</div>

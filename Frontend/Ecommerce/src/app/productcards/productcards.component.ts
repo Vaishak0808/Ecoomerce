@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EserviceService } from '../eservice.service';
+import { Pipe, PipeTransform } from '@angular/core';
+
 
 @Component({
   selector: 'app-productcards',

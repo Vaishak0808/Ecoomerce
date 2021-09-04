@@ -1,15 +1,31 @@
 .container{
-
-}
-.details{
-    display: flex;
+    margin-top:7%;
+    display:flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 .productimage{
-    background-color: blue;
-    width:50%;
+    width:90%;
+}
+.card-img-top{
+    width: 50%;
+}
+
+.Buttons{
+    margin-top: 10%;
+    border-radius: 3%;
+    display:flex;
+    flex-direction: row;
+    margin-left: 7%;
 }
 .productdetails{
-    width:50%;
-    /* background-color: black; */
+    width: 50%;
+    margin-top: 10%;
+}
+.details{
+    
+    width: 50%;
+}
+.buy-button{
+    margin-left:5%
 }

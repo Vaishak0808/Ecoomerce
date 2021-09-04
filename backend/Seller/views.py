@@ -118,7 +118,7 @@ class Welcome(APIView):
     def get(self,request):
         global USER_TOKEN
         USER_TOKEN = request.user.id 
-        print("WELCOME USERID++++++++++++++++++++++++++++",USER_TOKEN)
+        # print("WELCOME USERID++++++++++++++++++++++++++++",USER_TOKEN)
         if request.user.UserType == 'Seller':
         # userobj = RegistrationDataTable.objects.get(id=request.user.id)
             sellerobj = SellerRegistration.objects.get(id=request.user.id).CompanyId
@@ -165,10 +165,13 @@ def productfeedback(request,id=0):
 class viewCartProduct(APIView):
     def get(self,request): 
         id = USER_TOKEN
+        # print("IAM IN VIEW CART")
+        # print("IN CART USERID",id)
         Cart = ProductCart.objects.all().filter(id = id) 
 
         if(Cart):
             cart_serializer = GETProductCartSerializer(Cart ,many = True)
+            # print("CART -SERIALIZER",cart_serializer.data)
             return Response(cart_serializer.data) 
         else:
             return Response("Empty")
@@ -180,6 +183,13 @@ class viewCartProduct(APIView):
             return Response("Added Successfully")
         else:
             return Response("Adding Failed")
+@csrf_exempt
+def deleteCartProduct(request,id):
+    if request.method == "DELETE":
+        cart = ProductCart.objects.get(CartId = id)
+        cart.delete()
+        return JsonResponse("Deleted Succeffuly",safe=False)
+    return JsonResponse("Not removed",safe=False)
 class PlaceOrder(APIView):
     def get(self,request):
         # print("inside PLaceOrder+++")

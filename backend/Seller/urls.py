@@ -24,6 +24,7 @@ urlpatterns = [
     path('GetUserAndProduct/<str:id>/',getUserAndProduct.as_view()),
 
     path('AddToCart/',viewCartProduct.as_view()),
+    path('deleteCartProduct/<str:id>/',deleteCartProduct),
 
       url(r'^feedback/$',productfeedback),
       url(r'^feedback/([0-9]+)$',productfeedback),

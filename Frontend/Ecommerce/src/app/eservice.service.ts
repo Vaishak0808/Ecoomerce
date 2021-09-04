@@ -16,7 +16,9 @@ token :any ;
   readonly APIUrl = 'http://127.0.0.1:8000';
  
   constructor(private http:HttpClient,private cookieService: CookieService) { }
-  
+  ngOnInit():void {
+
+  }
 
   // ADMIN 
   viewcustomer():Observable<any[]>{
@@ -33,7 +35,7 @@ token :any ;
   }
   Rejectseller(val:any){
     console.log('calling service')
-    return this.http.delete(this.APIUrl+'/ViewSellerToApproveDetails/',val);
+    return this.http.delete(this.APIUrl+'/rejectrequestedseller/'+val);
   }
   // CUSTOMER
   CustomerRegistration(val:any){
@@ -99,6 +101,7 @@ token :any ;
  AddToCart(data:any){
   
    return this.http.post(this.APIUrl+'/AddToCart/',data);
+   
  }
  getCartDetails(){
   this.result_TOKEN = localStorage.getItem('VC_CART_TOKEN')
@@ -106,6 +109,7 @@ token :any ;
   console.log("token:",this.token)
   //  return this.http.get(this.APIUrl+'/AddToCart/',{headers: new HttpHeaders().set('Authorization',this.token)});
   return this.http.get(this.APIUrl+'/AddToCart/',{headers: new HttpHeaders().set('Authorization',this.token)})
+
   
  }
  GetUserAndProduct(data:any){
@@ -120,6 +124,11 @@ token :any ;
  }
 CustomerOrderDetails(){
   return this.http.get(this.APIUrl+'/PlaceOrder/')
+}
+deleteCartProduct(id:any)
+{
+  console.log("IN SERIVE CART DELETE")
+  return this.http.delete(this.APIUrl+'/deleteCartProduct/'+id);
 }
 
 }

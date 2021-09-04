@@ -1,16 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-.navbar{
-    width: 100vw;
-    height: 100vh;
-    height:50%;
-    /* background-color: #3CB371; */
-    background-color: white;
+.nav-link{
+    border-radius: 20px;
+}
+.nav-link:hover{
+    background-color: rgb(221, 211, 211);
+    
+    
+}
+.navbar_Main{
+    position:sticky;
+    width:100%; 
+    z-index: 1000000;
+    top:0;  
+    background-color: rgb(250, 248, 248);
     display: flex;
     border: 1px solid;
     padding: 10px;
-    box-shadow: 5px 5px 18px black;
+    /* box-shadow: 5px 5px rgb(25, 24, 24); */
     
-}
+} 
 .nav-logo{
     flex-grow: 1;
     margin-left: 5%;
@@ -116,7 +124,72 @@ color: black;
 .dropdown-menu.showdrop{
     display: block;
 }
-.LoginNav{
+
+
+.badge-secondary{
+    width: 19px;
+    height: 18px;
+    background-color: red;
+    color:white;
+    background:red;
+   position:relative;
+   top: -13px;
+   left: -5px; 
+    /* border-radius: 30%; */
+}
+
+
+.second-nav{
     display: flex;
+    height: 100px;
+    justify-content: space-around;
     flex-direction: row;
+    margin-left: 12%;  
+    margin-right: 12%;
+    /* background-color: #0bab64; */
+    /* justify-content: space-around; */
+}
+
+.LoginNav{
+    /* background-color: antiquewhite; */
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    margin-left: 5%;
+    padding-left: 10%;
+    padding-right: 7%;
+    margin-right: 5%;
+} 
+.second-nav-imag{
+    display: flex;
+    width:55%; 
+}
+.second-nav-font{
+    font-weight: bold;
+}
+.SecndNav_div2{
+    font-weight: bold;
+    margin-right: 5%;
+    /* background-color: brown; */
+    display: flex;
+}
+.second-loggedout-nav{
+    display: flex;
+    height: 100px; 
+    justify-content: space-around;
+    flex-direction: row;
+    margin-left: 12%;  
+    margin-right: 12%;
+
+} 
+
+.dropdown{
+    border: none;
+    outline: none;
+    color: black;
+    font-weight: 700;
+
+}
+.dropdown-settings{
+    padding-top: 0%;
 }

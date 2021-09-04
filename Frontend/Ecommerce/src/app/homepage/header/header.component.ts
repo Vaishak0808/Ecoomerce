@@ -4,9 +4,17 @@ import {EserviceService} from  '../../eservice.service';
 import { NavigationStart, Router } from '@angular/router';
 import { map,filter } from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
+import {ViewProductCartComponent} from '../../view-product-cart/view-product-cart.component';
+
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+// import { NgbdDropdownBasic } from './dropdown-basic';
 
 
 import { Observable } from 'rxjs';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -47,6 +55,8 @@ export class HeaderComponent implements OnInit {
   i : any |undefined
   SellProductActive: any|undefined;
   CompanyId :any |undefined;
+  cart : any;
+  cart_count =0;
   constructor(private formBuilder: FormBuilder,private service:EserviceService,private router:Router ,private route: ActivatedRoute) {
     this.token =localStorage.getItem("VC_CART_TOKEN")
     // console.log("id",JSON.parse(JSON.stringify(this.token)))
@@ -59,7 +69,8 @@ export class HeaderComponent implements OnInit {
    } 
   
 
-  ngOnInit(): void { 
+  ngOnInit(): void {     
+
         this.productform = this.formBuilder.group({
           PCategory:[''],
           PName:[''],
@@ -68,8 +79,7 @@ export class HeaderComponent implements OnInit {
           PPrice:[''],
           sellername:[''],
           
-        });
-
+        }); 
         this.form = this.formBuilder.group({ 
           
           CompanyName:[''],
@@ -79,13 +89,21 @@ export class HeaderComponent implements OnInit {
           Proof: [''],
           CompanyEmail:[''],
           CompanyWebsite:[''],  
-          Email:[''],
-          // UserId:[ localStorage.getItem("token")]
-         });
-        //  this.UserType = this.router.getCurrentNavigation()
-         
-        //  this.UserType = this.route.snapshot.paramMap.get("USER_TYPE")   
-        // console.log("USERTYPE FROM URL",this.UserType)
+          Email:[''], 
+         }); 
+         if(this.isLoggedIn){
+          this.service.getCartDetails().subscribe(cart=>{
+            
+        
+              console.log("IN CART")
+              this.cart = cart;
+              console.log("cart",this.cart)
+              for(var val of this.cart){
+                this.cart_count = this.cart_count + parseInt(val.Quantity)
+                }
+           
+          })
+         }
     }
    
     SellProduct(){
@@ -144,8 +162,8 @@ export class HeaderComponent implements OnInit {
         password:this.Password
       };
       this.service.CustomerRegistration(val).subscribe(res=>{
-        console.log("values",val)
-        alert("Created Succefully");
+        // console.log("values",val)
+        alert(res.toString())
       })
     }   
     login(){
@@ -153,7 +171,7 @@ export class HeaderComponent implements OnInit {
         username : this.username,
         password : this.password
       };
-      this.service.logincustomer(val).subscribe(res=>{   
+      this.service.logincustomer(val).subscribe(res=>{  
         this.UserType=this.service.Welcome().subscribe(res=>{ 
           this.hai = res 
           this.userForeign =this.hai.userid
@@ -163,7 +181,8 @@ export class HeaderComponent implements OnInit {
           console.log('FROM HEADER  -------------->',this.userForeign,this.UserType) 
           if (this.UserType === "ADMIN"){
             // console.log("inside ADMINNN")
-            this.router.navigate(['administrator']);
+            // this.router.navigate(['administrator']);
+            window.location.replace('administrator');
           }
           else{
             // console.log("iam seller")
@@ -172,10 +191,18 @@ export class HeaderComponent implements OnInit {
             // this.router.navigate(['/']);
             // this.router.navigate(['Homepage',{'USER_TYPE':this.UserType}]);
           }
+
+         
          
         })
+        
+  
         })  
     }
+
+
+
+
     logout(){
       this.service.logout()
       // this.router.navigate(["Homepage"]);

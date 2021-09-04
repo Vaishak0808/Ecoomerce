@@ -41,9 +41,9 @@ def ViewSellerToApproveDetails(request,id=0):
                         'UserType':Seller_data['UserType']}
         Seller_details ={'id':Seller_data['id'],
                             'Status':Seller_data['Status']}
-        print("User detils............................",User_details)
-        print("Seller details.................../....",Seller_details)
-        print("Sellerdata...........................",Seller_data)
+        # print("User detils............................",User_details)
+        # print("Seller details.................../....",Seller_details)
+        # print("Sellerdata...........................",Seller_data)
         Customer = RegistrationDataTable.objects.get(id=Seller_data['id'])
         Seller = SellerRegistration.objects.get(id = Seller_data['id'])
         Customer_serializer = CustomerUpdationSerializser(Customer,data = User_details)
@@ -53,29 +53,17 @@ def ViewSellerToApproveDetails(request,id=0):
             Seller_serializer.save()
             return JsonResponse("Approved", safe=False)
         return JsonResponse('failed',safe=False)
-    elif request.method == "DELETE":
+@csrf_exempt
+def rejectrequestedseller(request,id):
+    if request.method == "DELETE":
         print('--------------INSIDE DELETE--------------',request) 
+        print("companyid",id)
         Reject = SellerRegistration.objects.get(CompanyId=id)
+        print("\nREJECT SELLER\n",Reject)
         Reject.delete()
         return JsonResponse("Deleted Succesffuly",safe=False)
-    return JsonResponse("Deleting Failed",safe=False)
-
-
-
-        # print('----------request------',request)
-        # Reject_Id = JSONParser().parse(request)
-        # print('---------delete id----------',Reject_Id,Reject_Id['SId'])
-        # Seller = SellerRegistration.objects.get(SId =Reject_Id['SId'])
-        # print('Db data--------------0',Seller) 
-        # Seller.delete()
-        # return JsonResponse("Deleted Successfully", safe=False)
-         
-    # elif request.method == 'DELETE':
-    #     department = Department.objects.get(DepartmentId=id)
-    #     department.delete()
-    #     return JsonResponse("Deleted Succesffuly",safe=False)
-    # return JsonResponse("Deleting Failed",safe=False)
-
+    else:
+        return JsonResponse("Deleting Failed",safe=False)  
 
 
 

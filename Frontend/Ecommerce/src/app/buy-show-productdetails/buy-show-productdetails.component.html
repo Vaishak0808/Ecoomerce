@@ -1,34 +1,48 @@
 <div class="container">
-    
-
     <div class="details">
-        
-        <div class="productimage">
-            <img class="card-img-top" src= {{APIUrl+listofproduct.PPhoto}} alt="Card image cap">  
-            <h1>{{listofproduct.ProductId}}</h1>
-            <button class="btn btn-danger" (click)="addToCart()">ADD TO CART</button> 
-
-            <ng-template [ngIf]="USER_TOKEN" [ngIfElse]="DISABLED_BUY">   
-                <div>  <button class="btn btn-success" [routerLink]="['/Placeorder',listofproduct.ProductId]">BUY</button> </div>
-              </ng-template>
-              <ng-template #DISABLED_BUY>
-                <div>   <button class="btn btn-success" disabled>BUY</button>  </div>
-            </ng-template>
- 
+        <div>
+            <div class="productimage">
+                <img class="card-img-top" src= {{APIUrl+listofproduct.PPhoto}} alt="Card image cap"> 
             
-        </div>
-        
-
-
-
-        <div class="productdetails">
-           <h1>{{listofproduct.PName}}</h1> 
+            </div>
+            
+            <div class="Buttons">
+                <div class="add-to-cart">
+                    <button class="btn btn-danger" (click)="addToCart()">ADD TO CART</button> 
+                </div>
+                <div class="buy-button">
+                    <ng-template [ngIf]="USER_TOKEN" [ngIfElse]="DISABLED_BUY">   
+                        <div>  <button class="btn btn-success" [routerLink]="['/Placeorder',listofproduct.ProductId]">BUY</button> </div>
+                    </ng-template>
+                    <ng-template #DISABLED_BUY>
+                        <div>   <button class="btn btn-success" disabled>BUY</button>  </div>
+                    </ng-template>
+                </div>
+            </div>
         </div>
     </div>
 
-
-
-    <div class="similar-products">
-
+    
+    <div class="productdetails">
+        <table>
+            <tr>
+                <h1>{{listofproduct.PName}}</h1>
+            </tr>
+            <th>{{listofproduct.PPrice | currency:'₹'}}</th>
+            <tr>
+                <th>Description</th>
+                <td>{{listofproduct.PDescription}}</td>
+                
+            </tr>
+            <tr>
+                <th>Seller </th>
+                <td>{{listofproduct.sellername}}</td>
+            </tr>
+            <tr>
+                <th>Payment</th>
+                <td><ul><li>Cash on Delivery</li></ul></td>
+            </tr>
+        </table>
     </div>
+    
 </div>

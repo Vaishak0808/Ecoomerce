@@ -25,3 +25,15 @@
     width: 90%;
     margin-bottom: 20px;
  }
+ .btn{
+   font-family: 'FontAwesome';
+   display: flex;
+   justify-content: center;
+   margin-bottom: 3%;
+ }
+ .card-Name{
+   font-weight: 700;
+   display: flex;
+   justify-content: center;
+}
+ 
