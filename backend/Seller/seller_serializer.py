@@ -43,7 +43,10 @@ class SellerRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = SellerRegistration 
         fields ="__all__"
- 
+class UpdateProductStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductOrderDetails
+        fields = ("OrderId", "OrderStatus")
 class SellerUpdationRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = SellerRegistration

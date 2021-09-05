@@ -30,7 +30,17 @@
                 <td>{{data.PinCode}}</td>
                 <td>{{data.Phonenumber}}</td>
                 <td>{{data.OrderStatus}}</td> 
-                <td><button class="btn btn-danger">Change</button></td>               
+
+                <td *ngIf = "data.OrderStatus == 'Ordered'"> 
+                    <button class="btn btn-danger"  (click) = "ProcessingOrder(data.OrderId)">Processing</button>
+                </td> 
+                <td *ngIf = "data.OrderStatus == 'Processing'"> 
+                    <button class="btn btn-primary"  (click) = "OutforDeliveryOrder(data.OrderId)">Out for Delivery</button>
+                </td> 
+                <td *ngIf = "data.OrderStatus == 'Out for Delivery'"> 
+                    <button class="btn btn-success"  (click) = "DeliveredOrder(data.OrderId)">Delivered</button>
+                </td> 
+                <td><button class="btn btn-danger" (click) = "removeOrders(data.OrderId)">Delete</button></td>              
             </tr>
         </tbody>
     </table>

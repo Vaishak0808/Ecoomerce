@@ -68,6 +68,12 @@ token :any ;
     localStorage.removeItem('VC_CART_ID'); 
     localStorage.removeItem('VC_CART_USER_TYPE'); 
   }
+  updateOderdStatus(val:any){
+    return this.http.put(this.APIUrl+'/updateOderdStatus/',val)
+  }
+  removeOrders(val:any){
+    return this.http.delete(this.APIUrl+'/DeleteOderdStatus/'+val)
+  }
 
 
   // SELLER

@@ -12,30 +12,36 @@ userid:any|undefined;
 data:any|undefined;
 cart: any=[]
 product:any=[]
+hasCart : boolean=false
 constructor(private service:EserviceService) { }
 
   ngOnInit(): void {
-    this.getcartdetails()
+    this.getcartdetails()  
+  
 } 
 deleteCartProduct(id:any){
     this.service.deleteCartProduct(id).subscribe(res=>{
       alert(res.toString())
       this.getcartdetails()
+      
+    
+      
     })
     
   }
-  
-
-
 getcartdetails(){
     if (localStorage.getItem("VC_CART_TOKEN") ) {
     this.service.getCartDetails().subscribe(res=>{
-    this.cart = res;
-  
-  console.log(res)
+    this.cartList = res; 
+    
+    console.log("cart==================",this.cartList,this.cartList.length)
+   
 })
 }
 }
+
+ 
+
 }
 
 

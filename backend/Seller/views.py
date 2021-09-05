@@ -168,13 +168,17 @@ class viewCartProduct(APIView):
         # print("IAM IN VIEW CART")
         # print("IN CART USERID",id)
         Cart = ProductCart.objects.all().filter(id = id) 
+        # print("CART+++++++++++++++",Cart)
+        # print("CARTlength++++++++++++",len(Cart))
 
-        if(Cart):
+        if(len(Cart) > 0):
+            print("INSIDE IF")
             cart_serializer = GETProductCartSerializer(Cart ,many = True)
             # print("CART -SERIALIZER",cart_serializer.data)
             return Response(cart_serializer.data) 
         else:
-            return Response("Empty")
+            return Response('')
+        
             
     def post(self,request,*args,**kwarg):
         Cart_serializer = POSTProductCartSerializer(data = request.data)
@@ -243,17 +247,34 @@ class getUserAndProduct(APIView):
     
 class myOrders(APIView):
     def get(self,request):
+        o_status= "Canceled"
         user_id =  USER_TOKEN
-        order = ProductOrderDetails.objects.all().filter(CustomerId = user_id)
+        # CustomerId = user_id
+        order = ProductOrderDetails.objects.all().filter(  CustomerId = user_id ).filter(  OrderStatus = "Ordered" or "Processing" or "Out for Delivery" or "Delivered")
         if(order):
             order_serializer = ProductOrderDetailsDetailsSerializer(order , many=True)
             return Response(order_serializer.data)
-        return Response("Empty")
+        return Response('')
 
 
-
-
-
+@csrf_exempt
+def updateOderdStatus(request):
+    if request.method == "PUT":
+        OrderData = JSONParser().parse(request)
+        Order_details = ProductOrderDetails.objects.get(OrderId = OrderData['OrderId'])
+        Order_Serializer = UpdateProductStatusSerializer(Order_details,data = OrderData)
+        # print("\nORDER SERIALIZER\n",Order_Serializer)
+        # print("\nORDER SERIALISER DATA\n",Order_Serializer.initial_data)
+        if Order_Serializer.is_valid(): 
+            Order_Serializer.save()
+            return JsonResponse("Status Changed", safe=False)
+        return JsonResponse('failed to change',safe=False)
+@csrf_exempt       
+def DeleteProductOrder(request,id):
+    if request.method == 'DELETE':
+        Order_details = ProductOrderDetails.objects.get(OrderId = id)
+        Order_details.delete()
+        return JsonResponse("Deleted Successfully",safe=False)
 
 
 

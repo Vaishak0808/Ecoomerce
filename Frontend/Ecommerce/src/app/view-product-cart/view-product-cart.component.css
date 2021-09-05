@@ -1,23 +1,43 @@
 .container{
     margin-top: 7%;
-    display: flex;  
+    display: flex;   
+    /* align-items: center; */
+    justify-content: center;
 }
-.table-div{ 
+
+.emptycart{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.img-empty{
+    width:60%;
+}
+
+.table-div{  
+    display: flex;
+    align-content: center;
     margin-bottom: 10%;
     width:70%; 
 }
 .image-div{
+    background-color: blueviolet;
     margin-top: 5%; 
+    width:50%
 }
 .Sellerimage{ 
-    width: 10em;
+    width: 100%;
     border-radius: 5%;
 }
 .quantity-div{
     width:10em;
     margin-top: 5%; 
     display: flex;
-    /* margin-left: 20%; */
+
+    margin-left: 20%;
     justify-content: center;
     /* align-self: center; */
 }
@@ -30,9 +50,13 @@
     border-radius: 10%;
 }
 .personal-details{ 
+    margin-top: 3%; 
+    position: sticky;
     height: fit-content;
     width: 30%;
-    border: 1px solid;
+    border: 1px solid;       
+    z-index: 1000000;
+    top:46%;  
 } 
 .PDetails{ 
     width: 100%;
@@ -42,3 +66,7 @@
     position: top;
  
 } 
+.if-div{
+    display: flex;
+    flex-direction: row;
+}

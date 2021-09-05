@@ -1,14 +1,19 @@
-<table class="table table-striped">
-    <tbody>
-        <tr *ngFor="let data of Myorder">
-            <td class="ImageDiv"><img class="sellerimage" src={{APIUrl+data.ProductId.PPhoto}}></td>
-            <td>{{data.ProductId.PName}}<br>{{data.ProductId.PDescription}}</td>
-            
-            <td><h5>Order Date:</h5>{{data.OrderDate}}</td>
-            <td>{{data.OrderStatus}}</td>
-            <td>{{data.CompanyEmail}}</td>
-            <td><button class="btn btn-danger" (click)="CancelOrder()" >Cancel Order</button></td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
+<div class="container">
+    <table class="table table-striped" *ngIf = "Myorder.length > 0" >
+        <tbody>
+            <tr *ngFor="let data of Myorder">
+                <td class="ImageDiv"><img class="sellerimage" src={{APIUrl+data.ProductId.PPhoto}}></td>
+                <td>{{data.ProductId.PName}}<br>{{data.ProductId.PDescription}}</td>
+                <td>{{data.OrderId}}</td>
+                <td><h5>Order Date:</h5>{{data.OrderDate}}</td>
+                <td>{{data.OrderStatus}}</td>
+                <td>{{data.CompanyEmail}}</td>
+                <td><button class="btn btn-danger" (click)="CancelOrder(data.OrderId)" >Cancel Order</button></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf = "Myorder.length === 0" class="ORDER-Empty"> 
+        <h1> YOU DONT HAVE ORDERS</h1>
+    </div>
+</div>

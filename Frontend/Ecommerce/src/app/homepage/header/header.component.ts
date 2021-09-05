@@ -91,19 +91,19 @@ export class HeaderComponent implements OnInit {
           CompanyWebsite:[''],  
           Email:[''], 
          }); 
-         if(this.isLoggedIn){
-          this.service.getCartDetails().subscribe(cart=>{
+        //  if(this.isLoggedIn){
+        //   this.service.getCartDetails().subscribe(cart=>{
             
         
-              console.log("IN CART")
-              this.cart = cart;
-              console.log("cart",this.cart)
-              for(var val of this.cart){
-                this.cart_count = this.cart_count + parseInt(val.Quantity)
-                }
+        //       console.log("IN CART")
+        //       this.cart = cart;
+        //       console.log("cart",this.cart)
+        //       for(var val of this.cart){
+        //         this.cart_count = this.cart_count + parseInt(val.Quantity)
+        //         }
            
-          })
-         }
+        //   })
+        //  }
     }
    
     SellProduct(){

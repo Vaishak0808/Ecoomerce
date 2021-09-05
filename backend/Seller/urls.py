@@ -36,4 +36,7 @@ urlpatterns = [
 
       url('PlaceOrder/',PlaceOrder.as_view()),
       url('myOrders/',myOrders.as_view()),
+      url('updateOderdStatus/',updateOderdStatus),
+      path('DeleteOderdStatus/<str:id>/',DeleteProductOrder),
+
 ] 
